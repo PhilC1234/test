@@ -98,7 +98,7 @@ workflow {
 //    bams = Channel.fromPath(params.bams) | METADATA
     vcfs = Channel.fromPath(params.vcfs) | METADATA
 //    bams = bams.combine(beds).map { [ sample: it[0], bam: it[1], bed: it[2], bedFile: 's3://bdtest2003/tgen/GRCh38/' + it[3] ] }
-    vcfs = vcfs.combine(beds).map { [ sample: it[0], vcf: it[1], bed: it[2], bedFile: '/home/ec2-user/mnt/s3/GRCh38/' + it[3] ] }
+    vcfs = vcfs.combine(beds).map { [ sample: it[0], vcf: 's3://bdtest2003/tgen/sample1000a.vcf.gz', bed: 's3://bdtest2003/tgen/GRCh38/v3.1-GRCh38-all-stratifications.tsv', bedFile: 's3://bdtest2003/tgen/GRCh38/' + it[3] ] }
 
 //    sam_index(intersectBam(bams) | METADATA)
     tabix(intersectVcf(vcfs) | METADATA)
