@@ -81,7 +81,7 @@ process intersectVcf {
     output:
         path "${sample.id}----${bed}.vcf"
 
-    container` = 'bedtools'
+    container = 'bedtools'
     cpu = 8
     mem = 32
     tag "${vcf}----${bed}"
