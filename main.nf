@@ -13,7 +13,7 @@ process tabix {
         tuple val(meta), path("*vcf.gz"), emit: vcf
         path "*vcf.gz*", emit: publishFiles
 
-    image = 'docker.io/bioslimcontainers/tabix:1.7'
+    container = 'biocontainers/tabix'
     cpu = 2
     mem = 2
     publishDir path: "${params.outputFolder}", mode: 'move', overwrite: 'true'
@@ -45,7 +45,7 @@ process sam_index {
     output:
         path "${bam}*" 
 
-    image = 'docker.io/bioslimcontainers/bcftools:1.15.1'
+    container = 'biocontainers/bcftools'
     cpu = 6
     mem = 2
 
@@ -68,7 +68,7 @@ process intersectBam {
 
     tag "${bam}----${bed}"
 
-    image = 'docker.io/genomicpariscentre/bedtools'
+    container = biocontainers/bedtools'
     cpu = 2
     mem = 2
 
@@ -86,7 +86,7 @@ process intersectVcf {
     output:
         path "${sample.id}----${bed}.vcf"
 
-    image = 'docker.io/genomicpariscentre/bedtools'
+    container = 'biocontainers/bedtools'
     cpu = 8
     mem = 32
     tag "${vcf}----${bed}"
