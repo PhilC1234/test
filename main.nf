@@ -45,7 +45,7 @@ process sam_index {
     output:
         path "${bam}*" 
 
-    container = 'bcftools'
+    container = 'quay.io/repository/biocontainers/bcftools:latest'
     cpu = 6
     mem = 2
 
@@ -68,7 +68,7 @@ process intersectBam {
 
     tag "${bam}----${bed}"
 
-    container = bedtools'
+    container = 'quay.io/repository/biocontainers/bedtools:latest'
     cpu = 2
     mem = 2
 
@@ -86,7 +86,7 @@ process intersectVcf {
     output:
         path "${sample.id}----${bed}.vcf"
 
-    container = 'bedtools'
+    container = 'quay.io/repository/biocontainers/bedtools:latest'
     cpu = 8
     mem = 32
     tag "${vcf}----${bed}"
